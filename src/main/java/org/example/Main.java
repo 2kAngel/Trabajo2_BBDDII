@@ -67,7 +67,7 @@ public class Main {
             System.out.println("==============================================");
 
             System.out.println(" ");
-
+            System.out.println("=            =           =          =                 =");
             // -------> COMPROBAR DE EXCEPCIONES !!!!!!!!!!!!!!!!!!!!!!!!!!!!!! <-------
 
             LocalDateTime fechaHoraSistema = LocalDateTime.now();
@@ -84,9 +84,22 @@ public class Main {
 
             System.out.println("========================================================================");
             System.out.println("---------- Devolver Libro isbn 00000000000B al socio 12345678C ---------");
-            dao.devolverLibro("00000000000B", fechaHoraSistema );
+            //dao.devolverLibro("00000000000B", fechaHoraSistema );
             System.out.println("========================================================================");
 
+            System.out.println(" ");
+
+            System.out.println("===================HISTORICO===========================");
+            System.out.println("---------- Mostrar TODOS los prestamos ----------");
+            //Mostramos todos los prestamos que tenemos con ISBN concreto:
+            List<Prestamo> prestamos = dao.historicoLibro("00000000000D");
+            prestamos.forEach(System.out::println);
+
+
+
+
+
+            System.out.println("==============================================");
 
         }
         catch (LibroNoEncontradoException exception)

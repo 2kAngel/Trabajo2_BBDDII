@@ -20,6 +20,7 @@ public interface Dao extends AutoCloseable
 
     //void updateLibro (Libro libro) throws SQLException, LibroNoEncontradoException;
     //void deleteLibroByIsbn (String ISBN) throws SQLException, LibroNoEncontradoException;
+
     //-------------------------------------------------------
     Libro insertarLibro(String ISBN , String titulo, String estado) throws SQLException, IsbnObligatorioException, TituloObligatorioException, IsbnDuplicadoException;
 
@@ -33,12 +34,17 @@ public interface Dao extends AutoCloseable
 
     //================================================================
 
-    //Declaramos la lista de los libros
+    //Declaramos la lista de los socios
     List <Socio> getSocios() throws SQLException;
 
     Socio getSocioByDni(String DNI) throws SQLException , SocioNoEncontradoException;
 
     Socio insertarSocio(String nombre , String email, String direccion , String DNI, int nPrestamo) throws DireccionObligatorioException, DniDuplicadoException, DniObligatorioException, EmailDuplicadoException, EmailObligatorioException, NombreObligatorioException, NombreDuplicadoException, NumPrestamosRangoIncorrectoException, SQLException;
+
+    //==========================HISTORICO======================================
+
+    List <Prestamo> historicoLibro(String ISBN) throws SQLException, IsbnObligatorioException , DniObligatorioException;
+    Prestamo historicoSocio(String DNI) throws PrestamoNoEncontradoException,DniObligatorioException,SQLException;
 
 
 }

@@ -28,7 +28,7 @@ public class PostgresDao implements Dao
     @Override
     public List<Libro> getLibros() throws SQLException
     {
-        String SQL =    "SELECT l.isbn , l.titulo, l.estado "
+        String SQL =    "SELECT l.isbn , l.titulo, l.estado   "
                 +       " FROM libros l                       ";
 
         try(Statement statement = connection.createStatement(); //statment -> solo sentencias sql sin paramentros
@@ -653,6 +653,67 @@ public class PostgresDao implements Dao
 
             //puedes hacer un message para cada constraint de la tabla
         }
+    }
+    //========================PRESTAMOS=-=HISTORICO=============================================
+    List <Prestamo> prestamos = new ArrayList<>();
+    //------------------------------------------------------------------
+    //Funcion para ver todos los prestamos
+    @Override
+
+    public List<Prestamo> historicoLibro(String ISBN) throws SQLException , IsbnObligatorioException , DniObligatorioException {
+        String SQL =    "SELECT p.isbn , p.dni , p.fecha_prestamo , p.fecha_devolucion  "
+                +       " FROM prestamos p                                              ";
+
+        try(Statement statement = connection.createStatement(); //statment -> solo sentencias sql sin paramentros
+            ResultSet resultSet = statement.executeQuery(SQL) //execute.query -> sentencia simple + result ----- execute.update -> demas
+        )
+        {
+            //recorremos el data set con next , cdo next == false , fin
+
+            if (resultSet.next())//primer registro
+            {
+                do//tratamiento de registro
+                {
+                   if(resultSet.getString(1).equals(ISBN)){
+                        if (resultSet.getString(4) == null) {
+                            Prestamo prestamo = Prestamo.builder()
+                                    .withISBN(resultSet.getString(1))//1 -> el 1º del select = expediente
+                                    .withDNI(resultSet.getString(2))
+                                    .withFechaPrestamo(resultSet.getTimestamp(3).toLocalDateTime()) //
+                                    .withFechaDevolucion(null) //
+                                    .build();
+                            prestamos.add(prestamo);
+                        }else{
+                            Prestamo prestamo = Prestamo.builder()
+                                    .withISBN(resultSet.getString(1))//1 -> el 1º del select = expediente
+                                    .withDNI(resultSet.getString(2))
+                                    .withFechaPrestamo(resultSet.getTimestamp(3).toLocalDateTime()) //
+                                    .withFechaDevolucion(resultSet.getTimestamp(4).toLocalDateTime()) //
+                                    .build();
+                            prestamos.add(prestamo);
+                        }
+                   }else {
+                       LibroNoEncontradoException exception;
+                   }
+
+                } while (resultSet.next());
+            }
+            else //la consulta no obtiene ningun registro
+            {
+
+            }
+        }
+        return prestamos;
+    }
+    //------------------------------------------------------------------
+
+    public Prestamo sociosLibroConcreto(String DNI) throws PrestamoNoEncontradoException, DniObligatorioException,SQLException {
+        return null;
+    }
+
+    @Override
+    public Prestamo historicoSocio(String DNI) throws PrestamoNoEncontradoException, DniObligatorioException,SQLException {
+        return null;
     }
 
 
