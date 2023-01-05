@@ -20,4 +20,7 @@ public class Prestamo
    private String        DNI;                //VARCHAR
    private LocalDateTime fechaPrestamo;      //TIMESTAMP
    private LocalDateTime fechaDevolucion;    //TIMESTAMP
+
+   private String        titulo;                //VARCHAR
+   private String        nombre;                //VARCHAR
 }

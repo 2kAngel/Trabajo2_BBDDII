@@ -4,6 +4,7 @@ import org.example.Excepciones.Libro.LibroNoEncontradoException;
 import org.example.Excepciones.Socio.SocioNoEncontradoException;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -82,6 +83,7 @@ public class Main {
             //dao.prestarLibro("00000000000B", "12345678C", fechaHoraSistema );
             System.out.println("========================================================================");
 
+            //<<<<<ESTO CREO Q NOS DA UN NULL EN EL TITULO Q DEVUELVE , MIRARLO , PORQUE ESO NO PUEDE PASAR>>>>>>
             System.out.println("========================================================================");
             System.out.println("---------- Devolver Libro isbn 00000000000B al socio 12345678C ---------");
             //dao.devolverLibro("00000000000B", fechaHoraSistema );
@@ -89,11 +91,21 @@ public class Main {
 
             System.out.println(" ");
 
+
+
+            //<<<<<<APARTE DE LO Q NOS PIDE, PARA PODER PASARLE EL TITULO Y EL NOMBRE RESPECTIVAMENTE HE TENIDO Q CREAR DICHOS
+            //ATRIBS EN PRESTAMO,SI QUIERES DEJARLO BONITO EN VEZ DE USAR SOUTC(LAMDA) HAY Q ESCRIBIR el fore A MANO :D....>>>>>>
             System.out.println("===================HISTORICO===========================");
-            System.out.println("---------- Mostrar TODOS los prestamos ----------");
+            System.out.println("---------- Mostrar TODOS los prestamos ISBN concreto ----------");
             //Mostramos todos los prestamos que tenemos con ISBN concreto:
-            List<Prestamo> prestamos = dao.historicoLibro("00000000000D");
-            prestamos.forEach(System.out::println);
+            List<Prestamo> prestamosISBN = dao.historicoLibro("00000000000D");
+            prestamosISBN.forEach(System.out::println);
+            System.out.println("---------- Mostrar TODOS los prestamos DNI concreto ----------");
+            //Mostramos todos los prestamos que tenemos con ISBN concreto:
+            List<Prestamo> prestamosDNI = dao.historicoSocio("12345678C");
+            prestamosDNI.forEach(System.out::println);
+
+
 
 
 

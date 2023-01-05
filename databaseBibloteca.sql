@@ -84,9 +84,8 @@ CREATE SEQUENCE seq_prestamos MINVALUE 1 MAXVALUE 999999999 INCREMENT BY 1 START
 
 
 /*--------------------------------------------------------*/
-/*
+
 INSERT INTO prestamos(isbn, dni, fecha_prestamo , fecha_devolucion)  values ('00000000000A','12345678A','2022-11-11 20:00:00' , '2022-12-11 20:00:00');
 INSERT INTO prestamos(isbn, dni, fecha_prestamo , fecha_devolucion)  values ('00000000000B','12345678B','2022-11-12 20:00:00' , '2022-12-12 20:00:00');
 INSERT INTO prestamos(isbn, dni, fecha_prestamo , fecha_devolucion)  values ('00000000000C','12345678B','2022-11-13 20:00:00' , '2022-12-13 20:00:00');
 INSERT INTO prestamos(isbn, dni, fecha_prestamo , fecha_devolucion)  values ('00000000000D','12345678C','2022-11-16 20:00:00' , '2022-12-14 20:00:00');
-*/

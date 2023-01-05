@@ -44,7 +44,6 @@ public interface Dao extends AutoCloseable
     //==========================HISTORICO======================================
 
     List <Prestamo> historicoLibro(String ISBN) throws SQLException, IsbnObligatorioException , DniObligatorioException;
-    Prestamo historicoSocio(String DNI) throws PrestamoNoEncontradoException,DniObligatorioException,SQLException;
-
+    List <Prestamo> historicoSocio(String DNI) throws PrestamoNoEncontradoException,DniObligatorioException,SQLException;
 
 }
